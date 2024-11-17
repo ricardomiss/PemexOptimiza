@@ -83,8 +83,8 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Email ", obj.Email);
                     //cmd.Parameters.AddWithValue("IDEquipo ", obj.oEquipo.EquipoID);
 
-                    cmd.Parameters.Add("@UsuarioIDresultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 50).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("UsuarioIDresultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 50).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -92,8 +92,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    idusuariogenerado = Convert.ToInt32(cmd.Parameters["UsuarioIDresultado "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    idusuariogenerado = Convert.ToInt32(cmd.Parameters["UsuarioIDresultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -131,8 +131,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["@Respuesta"].Value);
+                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -154,12 +154,12 @@ namespace CapaDatos
                 {
                     SqlCommand cmd = new SqlCommand("SP_EDITARUSUARIO", oconexion);
                     cmd.Parameters.AddWithValue("UsuarioID", obj.UsuarioID);
-                    cmd.Parameters.AddWithValue("NombreCompleto ", obj.NombreCompleto);
-                    cmd.Parameters.AddWithValue("Ficha ", obj.Ficha);
-                    cmd.Parameters.AddWithValue("Extensión ", obj.Extensión);
-                    cmd.Parameters.AddWithValue("Area ", obj.Area);
-                    cmd.Parameters.AddWithValue("Cargo ", obj.Cargo);
-                    cmd.Parameters.AddWithValue("Email ", obj.Email);
+                    cmd.Parameters.AddWithValue("NombreCompleto", obj.NombreCompleto);
+                    cmd.Parameters.AddWithValue("Ficha", obj.Ficha);
+                    cmd.Parameters.AddWithValue("Extensión", obj.Extensión);
+                    cmd.Parameters.AddWithValue("Area", obj.Area);
+                    cmd.Parameters.AddWithValue("Cargo", obj.Cargo);
+                    cmd.Parameters.AddWithValue("Email", obj.Email);
                     //cmd.Parameters.AddWithValue("IDEquipo ", obj.oEquipo.EquipoID);
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 50).Direction = ParameterDirection.Output;
@@ -170,8 +170,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)

@@ -81,8 +81,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    idEquipogenerado = Convert.ToInt32(cmd.Parameters["EquipoIDresultado "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    idEquipogenerado = Convert.ToInt32(cmd.Parameters["EquipoIDresultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -120,8 +120,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["@Respuesta"].Value);
+                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -158,8 +158,8 @@ namespace CapaDatos
 
                     cmd.ExecuteNonQuery();
 
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta "].Value);
-                    Mensaje = cmd.Parameters["Mensaje "].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
             }
             catch (Exception ex)
