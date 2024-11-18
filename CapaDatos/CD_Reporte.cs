@@ -21,8 +21,6 @@ namespace CapaDatos
                     StringBuilder query = new StringBuilder();
                     SqlCommand cmd = new SqlCommand ("SP_REPORTE", oconexion);
                     cmd.Parameters.AddWithValue("UsuarioID", UsuarioID);
-                    //string query = "select NombreCompleto,Ficha, Modelo, NumeroSerie, Estado from Reporte";
-                    //SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     oconexion.Open();
@@ -34,17 +32,16 @@ namespace CapaDatos
                         {
                             lista.Add(new Reporte()
                             {
-                                //UsuarioID = dr["UsuarioID"].ToString(),
+                                ReporteID = Convert.ToInt32(dr["ReporteID"]),
+                                UsuarioID = Convert.ToInt32(dr["UsuarioID"]),
                                 NombreCompleto = dr["NombreCompleto"].ToString(),
-                                Ficha = dr["Ficha"].ToString(),
-                                //EquipoID = dr["EquipoID"].ToString(),
-                                TipoEquipo = dr["Modelo"].ToString(),
-                                NumeroSerie = dr["NumeroSerie"].ToString(),
-                                Estado = dr["Estado"].ToString(),
-
+                                Ficha = Convert.ToInt32(dr["Ficha"]),
+                                EquipoID = Convert.ToInt32(dr["EquipoID"]),
+                                TipoEquipo = dr["TipoEquipo"].ToString(),
+                                NumeroSerie = Convert.ToInt32(dr["NumeroSerie"]),
+                                Estado = dr["Estado"].ToString()
                             });
                         }
-
                     }
                 }
                 catch (Exception ex)

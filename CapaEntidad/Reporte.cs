@@ -8,17 +8,13 @@ namespace CapaEntidad
 {
     public class Reporte
     {
-        private string UsuarioID { get; set; }
+        public int ReporteID { get; set; }
+        public int UsuarioID { get; set; }
         public string NombreCompleto { get; set; }
-        public string Ficha { get; set; }
-
-
-        private string EquipoID { get; set; }
+        public int Ficha { get; set; }
+        public int EquipoID { get; set; }
         public string TipoEquipo { get; set; }
-        public string NumeroSerie { get; set; }
+        public int NumeroSerie { get; set; }
         public string Estado { get; set; }
-
-
-
     }
 }

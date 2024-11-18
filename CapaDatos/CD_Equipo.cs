@@ -19,7 +19,7 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = "select EquipoID,TipoEquipo,Marca, Modelo, NumeroSerie, Estado from Equipo";
+                    string query = "select EquipoID,TipoEquipo,Marca, Modelo, NumeroSerie, Estado from Equipo WHERE IsDeleted = 0";
                     SqlCommand cmd = new SqlCommand(query, oconexion);
                     cmd.CommandType = CommandType.Text;
 
@@ -112,7 +112,7 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("Sp_ELIMINAREQUIPO", oconexion);
                     cmd.Parameters.AddWithValue("EquipoID", obj.EquipoID);
                     cmd.Parameters.Add("@Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 50).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 255).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
 

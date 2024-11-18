@@ -19,7 +19,7 @@ namespace CapaDatos
             {
                 try
                 {
-                    string query = "select UsuarioID, NombreCompleto, Ficha, Extensión,Area,Cargo,Email,Contraseña from Usuario ";
+                    string query = "select UsuarioID, NombreCompleto, Ficha, Extensión,Area,Cargo,Email,Contraseña from Usuario WHERE IsDeleted = 0";
                     //query.AppendLine("select u.UsuarioID, u.NombreCompleto, u.Ficha, u.Extensión,u.Area,u.Cargo,u.Email,r.EquipoID, r.NumeroSerie from Usuario u ");
                     //query.AppendLine("inner join Equipo r on r.EquipoID = u.UsuarioID     ");
                     SqlCommand cmd = new SqlCommand(query, oconexion);
@@ -123,7 +123,7 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("Sp_ELIMINAUSUARIO", oconexion);
                     cmd.Parameters.AddWithValue("UsuarioID", obj.UsuarioID);
                     cmd.Parameters.Add("@Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 50).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 255).Direction = ParameterDirection.Output;
 
                     cmd.CommandType = CommandType.StoredProcedure;
 

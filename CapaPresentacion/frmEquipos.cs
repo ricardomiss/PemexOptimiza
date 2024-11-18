@@ -37,8 +37,6 @@ namespace CapaPresentacion
                     txtmodelo.Text = DGVdata.Rows[indice].Cells["Modelo"].Value.ToString();
                     txtserie.Text = DGVdata.Rows[indice].Cells["NumeroSerie"].Value.ToString();
                     txtestado.Text = DGVdata.Rows[indice].Cells["Estado"].Value.ToString();
-
-
                 }
             }
         }

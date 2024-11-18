@@ -38,21 +38,46 @@ namespace CapaPresentacion
             foreach (Reporte r in lista)
             {
                 DGVdata.Rows.Add(new object[] {
-                    //r.UsuarioID,
+                    "",
+                    r.ReporteID,
+                    r.UsuarioID,
                     r.NombreCompleto,
                     r.Ficha,
-                    //r.EquipoID,
+                    r.EquipoID,
                     r.TipoEquipo,
                     r.NumeroSerie,
                     r.Estado
-
                 });
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void DGVdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (DGVdata.Columns[e.ColumnIndex].Name == "seleccionar")
+            {
+                int indice = e.RowIndex;
+                textBox1.Text = DGVdata.Rows[indice].Cells[1].Value.ToString();
+                label3.Visible = true;
+                textBox1.Visible = true;
+            }
+        }
 
+        private void DGVdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.check.Width;
+                var h = Properties.Resources.check.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
         }
     }
 }

@@ -91,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SistemaPxDataSet.cs">
+      <DependentUpon>SistemaPxDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SistemaPxDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
