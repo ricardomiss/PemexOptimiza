@@ -90,5 +90,10 @@ namespace CapaPresentacion
         {
             AbrirFormulario((IconMenuItem) sender, new frmReporte());
         }
+
+        private void MenuRelacion_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario((IconMenuItem)sender, new frmRelacion());
+        }
     }
 }

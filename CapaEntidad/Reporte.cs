@@ -17,4 +17,14 @@ namespace CapaEntidad
         public int NumeroSerie { get; set; }
         public string Estado { get; set; }
     }
+    public class ListaEU
+    {
+        public List<Equipo> EquiposL { get; set; }
+        public List<Usuario> UsuariosL { get; set; }
+        public ListaEU()
+        {
+            UsuariosL = new List<Usuario>();
+            EquiposL = new List<Equipo>();
+        }
+    }
 }
