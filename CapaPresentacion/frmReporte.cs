@@ -1,11 +1,13 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
 using CapaPresentacion.Utilidades;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +34,10 @@ namespace CapaPresentacion
             lista = new CN_Reporte().reporte(
                 UsuarioID);
 
+            if(lista.Count > 0)
+            {
+                iconButton1.Visible = true;
+            }
 
             DGVdata.Rows.Clear();
 
@@ -78,6 +84,44 @@ namespace CapaPresentacion
                 e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
                 e.Handled = true;
             }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            foreach(DataGridViewColumn column in DGVdata.Columns)
+            {
+                dt.Columns.Add(column.Name);
+            }
+            foreach(DataGridViewRow row in DGVdata.Rows)
+            {
+                DataRow dRow = dt.NewRow();
+                foreach(DataGridViewCell cell in row.Cells)
+                {
+                    dRow[cell.ColumnIndex] = cell.Value;
+                }
+                dt.Rows.Add(dRow);
+            }
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = "Resources/Reports/ReportPemex2.rdlc";
+            localReport.DataSources.Clear();
+            localReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
+            byte[] renderedBytes = localReport.Render("PDF");
+
+            using (SaveFileDialog sfd = new SaveFileDialog()) 
+            {
+                sfd.Filter = "PDF files|*.pdf"; 
+                sfd.Title = "Guardar reporte";
+                sfd.FileName = $"Reporte{DateTime.Now.ToString("ddMMyyyy")}.pdf";
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = sfd.FileName;
+                    using(FileStream fs = new FileStream(filePath, FileMode.Create))
+                    {
+                        fs.Write(renderedBytes, 0, renderedBytes.Length);
+                    }
+                }
+            } 
         }
     }
 }
